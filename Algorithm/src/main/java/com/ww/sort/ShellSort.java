@@ -15,7 +15,7 @@ public class ShellSort {
         while((gap = gap/2)>0){
             for (int i=0; i<gap;i++){
                 System.out.println(Arrays.toString(arr));
-                sort(arr, i, gap);
+                sort2(arr, i, gap);
                 System.out.println(Arrays.toString(arr));
                 System.out.println("===");
             }
@@ -32,6 +32,22 @@ public class ShellSort {
                     arr[j] = arr[j+gap];
                     arr[j+gap] = tmp;
                 }else {
+                    break;
+                }
+            }
+        }
+    }
+
+    public static void sort2(int[] arr,int first,int gap){
+        for(int i=first+gap; i<arr.length; i+=gap){
+            //i是待找位置待元素
+            //i之前的都是以及有序的
+            int tmp = arr[i];
+            for (int j=i-gap; j>=0; j-=gap){
+                if (tmp < arr[j]){
+                    arr[j+gap] = arr[j];
+                }else {
+                    arr[j+gap] = tmp;
                     break;
                 }
             }
