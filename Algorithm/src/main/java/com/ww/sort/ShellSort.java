@@ -24,6 +24,9 @@ public class ShellSort {
         System.out.println(Arrays.toString(arr));
     }
 
+    /**
+     * 交换法
+     */
     public static void sort(int[] arr,int first,int gap){
         for(int i=first+gap; i<arr.length; i+=gap){
             for (int j=i-gap; j>=0; j-=gap){
@@ -38,6 +41,9 @@ public class ShellSort {
         }
     }
 
+    /**
+     * 移位法
+     */
     public static void sort2(int[] arr,int first,int gap){
         for(int i=first+gap; i<arr.length; i+=gap){
             //i是待找位置待元素
