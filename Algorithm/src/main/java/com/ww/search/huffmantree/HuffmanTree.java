@@ -10,25 +10,40 @@ import java.util.List;
 public class HuffmanTree {
     public static void main(String[] args) {
         int[] arr = {13,7,8,3,29,6,1};
-        createHuffmanTree(arr);
+        Node root = createHuffmanTree(arr);
+        preOrder(root);
     }
 
-    public static void createHuffmanTree(int[] arr){
+    public static void preOrder(Node node){
+        if (node != null){
+            node.preOrder();
+        }else {
+            System.out.println("树为空");
+        }
+    }
+
+    public static Node createHuffmanTree(int[] arr){
         //遍历所有数组，将
         List<Node> nodes = new ArrayList<>();
         for (int i=0; i<arr.length; i++){
             nodes.add(new Node(arr[i]));
         }
         Collections.sort(nodes);
+
+        while(nodes.size()>1){
+            Node left = nodes.get(0);
+            Node right = nodes.get(1);
+
+            Node parent = new Node(left.value + right.value);
+            parent.left = left;
+            parent.right = right;
+            nodes.add(parent);
+            nodes.remove(left);
+            nodes.remove(right);
+        }
+
         System.out.println(nodes);
-
-        Node left = nodes.get(0);
-        Node right = nodes.get(1);
-
-        Node parent = new Node(left.value + right.value);
-        nodes.add(parent);
-        nodes.remove(left);
-        nodes.remove(right);
+        return nodes.get(0);
     }
 }
 
@@ -47,6 +62,17 @@ class Node implements Comparable<Node>{
     public Node(int value){
         this.value = value;
     }
+
+    public void preOrder(){
+        System.out.println(this);
+        if (this.left != null){
+            this.left.preOrder();
+        }
+        if (this.right != null){
+            this.right.preOrder();
+        }
+    }
+
 
     @Override
     public String toString() {
