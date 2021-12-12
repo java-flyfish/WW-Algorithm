@@ -13,7 +13,7 @@ public class ArrBinaryTreeDemo {
 }
 
 class ArrBinaryTree{
-    private int[] arr;
+    private final int[] arr;
 
     public ArrBinaryTree(int[] arr){
         this.arr = arr;

@@ -5,9 +5,9 @@ package com.ww.stack;
  */
 public class ArrayStack{
     //栈的大小
-    private int maxSize;
+    private final int maxSize;
     //数组
-    private int[] stack;
+    private final int[] stack;
     //top表示栈顶，初始化-1
     private int top = -1;
 

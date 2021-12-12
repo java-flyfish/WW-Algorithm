@@ -9,12 +9,12 @@ public class HeapSort {
 
     public static void main(String[] args) {
         //数组升序排列
-        int arr[] = {4,6,8,5,9,-1,45,56,8,23,45};
+        int[] arr = {4,6,8,5,9,-1,45,56,8,23,45};
         heapSort(arr);
     }
 
     //编写一个堆排序方法
-    public static void heapSort(int arr[]){
+    public static void heapSort(int[] arr){
         int temp;
         /*System.out.println("堆排序！");
         adjustHeap(arr,1,arr.length);
@@ -43,7 +43,7 @@ public class HeapSort {
      * @param i 非叶子结点索引
      * @param length 表示多少个元素继续调整，length逐渐减少
      */
-    public static void adjustHeap(int arr[],int i,int length){
+    public static void adjustHeap(int[] arr, int i, int length){
         int temp = arr[i];
         for (int k = i*2+1; k<length; k=k*2+1){
             //两个叶子节点比较，将索引k指向较大的节点
