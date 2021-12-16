@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.charset.Charset;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  * 聊天室服务器
  */
 public class ChatServer {
-
+    Set<SocketChannel> socketChannels = new HashSet<>();
     /**
      * @param args
      */
@@ -75,7 +76,8 @@ public class ChatServer {
         socketChannel.configureBlocking(false);
         //注册
         socketChannel.register(selector,SelectionKey.OP_READ);
-
+        //暂时存储
+        socketChannels.add(socketChannel);
         //回复客户端信息
         socketChannel.write(Charset.forName("UTF-8").encode("欢迎进入聊天室"));
     }
@@ -86,6 +88,7 @@ public class ChatServer {
     private void readOperator(SelectionKey selectionKey, Selector selector) throws Exception {
         //获取连接
         SocketChannel socketChannel = (SocketChannel)selectionKey.channel();
+
         //创建buffer
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
 
@@ -101,22 +104,21 @@ public class ChatServer {
         //将消息广播到其他客户端
         System.out.println("要广播到消息：" + msg);
 
-        castOtherClient(msg,selector,socketChannel);
+        castOtherClient(msg,socketChannel);
     }
 
     /**
      * 广播给其他客户端
      */
-    private void castOtherClient(String msg, Selector selector, SocketChannel socketChannel) throws Exception {
+    private void castOtherClient(String msg, SocketChannel socketChannel) throws Exception {
 
         //获取所有已经接入到客户端
-        Set<SelectionKey> selectionKeys = selector.selectedKeys();
-        for (SelectionKey selectionKey : selectionKeys) {
-            Channel tarChannel = selectionKey.channel();
-            if (tarChannel instanceof SocketChannel && tarChannel != socketChannel){
-                //往其他客户端发送消息
-                ((SocketChannel) tarChannel).write(Charset.forName("UTF-8").encode(msg));
+        for (SocketChannel channel : socketChannels) {
+            if (channel == socketChannel){
+                continue;
             }
+            //往其他客户端发送消息
+            channel.write(Charset.forName("UTF-8").encode(msg));
         }
     }
 }
