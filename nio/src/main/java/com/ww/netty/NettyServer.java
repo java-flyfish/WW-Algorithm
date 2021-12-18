@@ -12,9 +12,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class NettyServer {
 
     public static void main(String[] args) throws InterruptedException {
-        //两个线程组，bossGroup只处理连接请求
+        //两个线程组，bossGroup只处理连接请求，workGroup处理工作请求
+        //两个都是无限循环
+        //两个含有的自线程个数（NioEventLoop）默认为实际CPU核心数*2
+        //DEFAULT_EVENT_LOOP_THREADS = Math.max(1, SystemPropertyUtil.getInt("io.netty.eventLoopThreads", NettyRuntime.availableProcessors() * 2));
         EventLoopGroup bossGroup = new NioEventLoopGroup();
-        //workGroup处理工作请求
+        //
         EventLoopGroup workGroup = new NioEventLoopGroup();
 
         try {
@@ -25,7 +28,7 @@ public class NettyServer {
             bootstrap
                     //设置工作线程组
                     .group(bossGroup, workGroup)
-                    //设置通道实现
+                    //设置通道实现，客户端是NioSocketChannel
                     .channel(NioServerSocketChannel.class)
                     //设置线程队列得到端连接数
                     .option(ChannelOption.SO_BACKLOG, 128)
