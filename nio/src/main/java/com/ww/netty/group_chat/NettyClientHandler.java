@@ -1,4 +1,4 @@
-package com.ww.netty;
+package com.ww.netty.group_chat;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

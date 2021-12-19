@@ -1,10 +1,7 @@
-package com.ww.netty;
+package com.ww.netty.group_chat;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -46,7 +43,17 @@ public class NettyServer {
             System.out.println("server is ready.......");
             //绑定一个端口，设置同步方式
             ChannelFuture cf = bootstrap.bind(6668).sync();
-
+            //给cf绑定监听事件，netty读每个操作都可以绑定监听事件
+            cf.addListener(new ChannelFutureListener() {
+                @Override
+                public void operationComplete(ChannelFuture channelFuture) throws Exception {
+                    if (channelFuture.isSuccess()){
+                        System.out.println("端口绑定成功");
+                    }else {
+                        System.out.println("端口绑定失败");
+                    }
+                }
+            });
             //对关闭通道进行监听
             cf.channel().closeFuture().sync();
         }finally {
