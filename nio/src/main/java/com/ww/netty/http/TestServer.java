@@ -20,10 +20,13 @@ public class TestServer {
                     .group(bossGroup, workGroup)
                     //设置通道实现，客户端是NioSocketChannel
                     .channel(NioServerSocketChannel.class)
+                    //handler():对bossGroup生效，childHandler():对workGroup生效
                     .childHandler(new TestServerInitializer());
 
             ChannelFuture cf = serverSootstrap.bind(6969).sync();
-            //对关闭通道进行监听
+            //通过ChannelFuture可以得到channel
+            //channel是netty用来进行网络通信对组件
+            // 对关闭通道进行监听
             cf.channel().closeFuture().sync();
         }finally {
             bossGroup.shutdownGracefully();
