@@ -29,8 +29,10 @@ public class WordcountDriver  {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         //设置输入和输出路径
-        FileInputFormat.setInputPaths(job,new Path("/Users/tong/javaProject/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/inputword"));
-        FileOutputFormat.setOutputPath(job,new Path("/Users/tong/javaProject/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/outputword"));
+//        FileInputFormat.setInputPaths(job,new Path("/Users/tong/javaProject/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/inputword"));
+//        FileOutputFormat.setOutputPath(job,new Path("/Users/tong/javaProject/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/outputword"));
+        FileInputFormat.setInputPaths(job,new Path(args[0]));
+        FileOutputFormat.setOutputPath(job,new Path(args[1]));
         //提交job
         boolean result = job.waitForCompletion(true);
 
