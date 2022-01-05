@@ -1,4 +1,4 @@
-package com.weiweiyang.mapreduce.writable;
+package com.weiweiyang.mapreduce.writableComparable;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -21,19 +21,16 @@ public class FlowDriver {
         job.setReducerClass(FlowReducer.class);
 
         //设置map输出的key-value类型
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(FlowBean.class);
+        job.setMapOutputKeyClass(FlowBean.class);
+        job.setMapOutputValueClass(Text .class);
         //设置最终输出的key-value类型
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
-        //设置自定义分区实现
-//        job.setPartitionerClass(ProvincePartitioner.class);
-        //设置NumReduceTasks个数，这个个数必须和ProvincePartitioner的分区个数一致
-//        job.setNumReduceTasks(5);
         //设置输入和输出路径
-        FileInputFormat.setInputPaths(job,new Path("/Users/tongweiyang/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/inputflow"));
-        FileOutputFormat.setOutputPath(job,new Path("/Users/tongweiyang/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/outflow"));
+        //输入路径是上一个FlowDriver的输出路径
+        FileInputFormat.setInputPaths(job,new Path("/Users/tongweiyang/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/outflow"));
+        FileOutputFormat.setOutputPath(job,new Path("/Users/tongweiyang/IdeaProjects/WW-Algorithm/HDFSClient/src/main/resources/outflowsort"));
         //提交job
         boolean result = job.waitForCompletion(true);
 
