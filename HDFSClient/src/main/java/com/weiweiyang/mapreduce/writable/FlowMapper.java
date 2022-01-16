@@ -18,7 +18,7 @@ public class FlowMapper extends Mapper<LongWritable, Text,Text, FlowBean> {
         //2        13846544121      192.196.100.2                           264   0         200
         String line = value.toString();
         //切割
-        String[] split = line.split("\t");
+        String[] split = line.split("\\s+");
         //获取想要的数据
         int length = split.length;
         String phone = split[1];
