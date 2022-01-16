@@ -27,6 +27,7 @@ public class HeartServerHandler extends ChannelInboundHandlerAdapter {
 
             System.out.println(ctx.channel().remoteAddress() + "发生了 " + eventType);
 
+            //关闭通道
             ctx.channel().close();
         }
     }
