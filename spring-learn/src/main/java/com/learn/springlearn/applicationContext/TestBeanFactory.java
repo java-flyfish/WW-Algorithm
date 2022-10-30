@@ -36,7 +36,7 @@ public class TestBeanFactory {
         getAllBeanName(beanFactory);
         String[] beanDefinitionNames;
 
-        //往beanFactory注册一些后置处理器
+        //往beanFactory注册一些后置处理器，beanFactory的后置处理器，主要是补充一些bean定义
         AnnotationConfigUtils.registerAnnotationConfigProcessors(beanFactory);
 
         //第二次获取beanFactory中所有的bean名字
