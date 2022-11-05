@@ -1,4 +1,4 @@
-package com.learn.springlearn.lifeCycle;
+package com.learn.springlearn.lifeCycle.test1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
