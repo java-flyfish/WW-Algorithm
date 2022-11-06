@@ -29,7 +29,7 @@ import java.util.Set;
 
 /**
  * 演示BeanFactory后置处理器
- * P19-22
+ * P19-23
  */
 public class Test01BeanFactoryPostProcessor {
 
