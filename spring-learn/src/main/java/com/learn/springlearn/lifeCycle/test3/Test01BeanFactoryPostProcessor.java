@@ -1,6 +1,7 @@
 package com.learn.springlearn.lifeCycle.test3;
 
 import com.learn.springlearn.lifeCycle.test3.component.ComponentScanPostProcessor;
+import com.learn.springlearn.lifeCycle.test3.component.MapperPostProcessor;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -50,6 +51,10 @@ public class Test01BeanFactoryPostProcessor {
         */
         //已有的Beanfactpry后置处理器演示end。。。。。。。。。
 
+        /**
+         * Mapper接口注册后置处理器
+         */
+        context.registerBean(MapperPostProcessor.class);
         //模拟后置处理器原理1，处理@ComponentScan  begin。。。。。。。。。。。
         dealComponentScan(context);
         //模拟后置处理器原理1，处理ComponentScan  end。。。。。。。。。。。
