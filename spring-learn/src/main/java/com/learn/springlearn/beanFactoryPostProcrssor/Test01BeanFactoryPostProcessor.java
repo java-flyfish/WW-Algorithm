@@ -1,16 +1,12 @@
-package com.learn.springlearn.lifeCycle.test3;
+package com.learn.springlearn.beanFactoryPostProcrssor;
 
-import com.learn.springlearn.lifeCycle.test3.component.ComponentScanPostProcessor;
-import com.learn.springlearn.lifeCycle.test3.component.MapperPostProcessor;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.config.BeanDefinition;
+import com.learn.springlearn.beanFactoryPostProcrssor.component.MapperPostProcessor;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ConfigurationClassPostProcessor;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.io.ClassPathResource;
@@ -47,7 +43,7 @@ public class Test01BeanFactoryPostProcessor {
         //MapperScannerConfigurer这是mybatis的Beanfactpry后置处理器，用来扫描@Mapper接口
         context.registerBean(MapperScannerConfigurer.class,bd ->
                 bd.getPropertyValues()
-                  .add("basePackage","com.learn.springlearn.lifeCycle.test3.component.mapper"));
+                  .add("basePackage","com.learn.springlearn.beanFactoryPostProcrssor.component.mapper"));
         */
         //已有的Beanfactpry后置处理器演示end。。。。。。。。。
 

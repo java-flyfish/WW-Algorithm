@@ -1,4 +1,4 @@
-package com.learn.springlearn.lifeCycle.test3;
+package com.learn.springlearn.beanFactoryPostProcrssor;
 
 import lombok.extern.slf4j.Slf4j;
 

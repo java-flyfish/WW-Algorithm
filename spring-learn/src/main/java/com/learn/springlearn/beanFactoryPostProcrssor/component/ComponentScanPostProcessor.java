@@ -1,6 +1,6 @@
-package com.learn.springlearn.lifeCycle.test3.component;
+package com.learn.springlearn.beanFactoryPostProcrssor.component;
 
-import com.learn.springlearn.lifeCycle.test3.Config;
+import com.learn.springlearn.beanFactoryPostProcrssor.Config;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

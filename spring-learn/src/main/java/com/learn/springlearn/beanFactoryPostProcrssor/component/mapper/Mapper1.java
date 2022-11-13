@@ -1,4 +1,4 @@
-package com.learn.springlearn.lifeCycle.test3.component.mapper;
+package com.learn.springlearn.beanFactoryPostProcrssor.component.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 

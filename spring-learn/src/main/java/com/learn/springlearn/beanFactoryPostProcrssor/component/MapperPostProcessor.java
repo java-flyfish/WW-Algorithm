@@ -1,4 +1,4 @@
-package com.learn.springlearn.lifeCycle.test3.component;
+package com.learn.springlearn.beanFactoryPostProcrssor.component;
 
 import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.beans.BeansException;
